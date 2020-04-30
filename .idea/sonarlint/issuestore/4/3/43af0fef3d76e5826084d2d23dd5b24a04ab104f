@@ -1,0 +1,8 @@
+
+l
+java:S1128"ORemove this unused import 'javax.print.attribute.standard.PrinterMakeAndModel'.(Ô¡Ü®8Ã‹“œ.
+i
+java:S2184%"GCast one of the operands of this multiplication operation to a "float".(ÎËËõøÿÿÿÿ8Ù•ˆ“œ.
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(±›Ô—
+`
+java:S1128">Remove this unused import 'eu.ctruillet.chapter1.vector.Main'.(‚§İ¦ıÿÿÿÿ8ìé“œ.
