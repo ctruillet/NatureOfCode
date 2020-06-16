@@ -11,12 +11,15 @@ import processing.core.PVector;
 public class GraspableArea {
 	//Attributs
 	private PVector position;
+	private int width;
+	private int height;
 
 	//Constructeur
 	public GraspableArea(){
 		this.position = new PVector(3*Main.processing.width/4,3*Main.processing.height/4);
+		this.width=Main.processing.width/4;
+		this.height=Main.processing.height/4;
 	}
-
 
 	//Méthodes
 	public void draw(){
@@ -27,23 +30,15 @@ public class GraspableArea {
 		Main.processing.rect(position.x, position.y, Main.processing.width-position.x, Main.processing.height-position.y);
 	}
 
-	public boolean isObjectOnArea(GraspableObject graspableObject){
-		return (this.position.x <= graspableObject.getPosition().x && this.position.y <= graspableObject.getPosition().y);
+	public PVector getPosition() {
+		return position;
 	}
 
-	public void drawGhostObject(GraspableObject graspableObject){
-		PVector positionInArea = PVector.sub(graspableObject.getPosition(), this.position);
-
-		PVector ghostPosition = new PVector((positionInArea.x)*4, (positionInArea.y)*4);
-
-		if(ghostPosition.x<position.x || ghostPosition.y < position.y){
-			Main.processing.noFill();
-			Main.processing.strokeWeight(2);
-			Main.processing.stroke(200,0,0);
-			Main.processing.circle(ghostPosition.x, ghostPosition.y,10);
-		}
-
+	public int getWidth() {
+		return width;
 	}
 
-
+	public int getHeight() {
+		return height;
+	}
 }

@@ -13,7 +13,7 @@ public class Main extends PApplet {
 	public static PApplet processing;
 	public GraspableObject graspableObject;
 	public GraspableArea graspableArea;
-
+	public Element element;
 	//Constructeur
 
 
@@ -23,7 +23,8 @@ public class Main extends PApplet {
 	}
 
 	public void settings(){
-		size(1080, 640);
+		fullScreen();
+		//size(1080, 640);
 	}
 
 	public void setup(){
@@ -32,6 +33,7 @@ public class Main extends PApplet {
 
 		this.graspableObject = new GraspableObject();
 		this.graspableArea = new GraspableArea();
+		this.element = new Element(100,10,250,350);
 
 		background(255);
 	}
@@ -39,19 +41,15 @@ public class Main extends PApplet {
 	public void draw(){
 		background(255);
 		//System.out.println("x=" + mouseX + " ;y=" + mouseY);
+		this.element.draw();
 
 		this.graspableArea.draw();
 		this.graspableObject.draw();
 
-		if(this.graspableArea.isObjectOnArea(graspableObject)){
-			this.graspableArea.drawGhostObject(graspableObject);
+		if(this.graspableObject.isOnArea(graspableArea)){
+			this.graspableObject.computeNewGhostPosition(graspableArea);
+			this.graspableObject.drawGhostPosition(graspableArea);
 		}
-
-
-//		stroke(0);
-//		line(width/2,0,width/2,height);
-//		line(0,height/2,width,height/2);
-
 	}
 
 	public void mousePressed(){
@@ -60,7 +58,23 @@ public class Main extends PApplet {
 				this.graspableObject.beGrasp(true);
 			}
 		}else if(mouseButton == RIGHT){
-			//Action
+			if(this.graspableObject.isMouseOnObject(mouseX,mouseY)) {
+				if (this.graspableObject.getElement() == null) {
+					if (this.graspableObject.isOnElement(element) || this.graspableObject.isGhostOnElement(graspableArea, element)) {
+
+						//Attraper l'element
+						this.graspableObject.graspElement(graspableArea, element);
+
+					}
+				}else {
+
+					//Lacher l'element
+					this.graspableObject.dropElement(graspableArea);
+
+				}
+			}
+
+
 		}
 
 	}
